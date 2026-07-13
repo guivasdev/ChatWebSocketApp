@@ -10,6 +10,12 @@ export default function LoginScreen() {
   const [username, setUsername] = useState("");
   const styles = useMemo(() => createStyles(theme), [theme]);
 
+  function validateName() {
+    if (!username) return;
+    router.navigate({ pathname: '/chat', params: { name: username } })
+
+  }
+
   return (
     <SafeAreaView edges={["top", "bottom"]} style={styles.containerScreen}>
       <KeyboardAvoidingView
@@ -40,7 +46,7 @@ export default function LoginScreen() {
                 style={styles.button}
                 labelStyle={{ fontSize: 16, letterSpacing: 1.5 }}
                 contentStyle={styles.buttonContent}
-                onPress={() => router.navigate("/chat")}
+                onPress={validateName}
               >
                 ENTRAR
               </Button>
